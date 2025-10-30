@@ -1,16 +1,12 @@
 <?php
-// Get current values
 $apiKey = get_option('paynow_apiKey', '');
 $signatureKey = get_option('paynow_signatureKey', '');
 ?>
 
 <div class="wrap">
     <h1>Paynow Settings</h1>
+    <?php settings_errors(); ?>
     <form method="post" action="options.php">
-        <?php
-        settings_fields('paynow_donations_settings_group');
-        do_settings_sections('paynow_donations_settings_page');
-        ?>
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">API Key</th>
