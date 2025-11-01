@@ -5,7 +5,8 @@
     "require": {
         "pay-now/paynow-php-sdk": "^3.0",
         "symfony/http-client": "^7.3",
-        "nyholm/psr7": "^1.8"
+        "nyholm/psr7": "^1.8",
+        "ramsey/uuid": "^4.9"
     },
     "license": "GPL-2.0-or-later",
     "authors": [

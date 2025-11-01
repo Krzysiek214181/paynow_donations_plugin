@@ -1,0 +1,34 @@
+*{
+    box-sizing: border-box;
+}
+
+.paynow-donation-form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
+.paynow-donation-form input{
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 8px 16px;
+}
+
+.paynow-donation-form label{
+    font-size: 16px;
+
+}
+
+.paynow-donation-form button{
+    width: 100%;
+    font-size: 24px;
+    padding: 16px 24px;
+    border-radius: 16px;
+    font-weight: 700;
+}
+
+.paynow-donation-form-fieldset{
+    width: 100%;
+    
+}

@@ -2,7 +2,8 @@
 
 namespace Src\Admin;
 
-class AdminDisplayHistory{
+class AdminDisplayHistory
+{
 
     /**
      * creates the transaction history table sorted accordingly to the url parameters
@@ -19,33 +20,33 @@ class AdminDisplayHistory{
         $allowed_columns = ['id','status','amount','description','user_email','user_name','user_surname','transaction_id','created_at','updated_at'];
         if (!in_array($column, $allowed_columns)) $column = 'id';
 
-        $limit = ($_GET['filter_limit']) ? intval($_GET['filet_limit']) : 25;
+        $limit = (!empty($_GET['filter_limit'])) ? intval($_GET['filet_limit']) : 25;
 
         $whereArray = self::build_where_clause();
 
         $whereClause = $whereArray['where'];
         $values = $whereArray['values'];
 
-        $query = $wpdb->prepare("SELECT * FROM $table_name $whereClause ORDER BY $column $order LIMIT $limit", ...$values);
+        $query = $wpdb->prepare("SELECT * FROM $table_name $whereClause ORDER BY $column $order LIMIT %d", ...array_merge($values, [$limit]));
 
         $results = $wpdb->get_results($query, ARRAY_A);
 
+        echo '<table class="widefat" cellspacing="0">';
+        echo '<thead><tr>
+            <th>ID' . self::create_sort_button('id') . '</th>
+            <th>Status' . self::create_sort_button('status') . '</th>
+            <th>Amount' . self::create_sort_button('amount') . '</th>
+            <th>Description' . self::create_sort_button('description') . '</th>
+            <th>Email' . self::create_sort_button('user_email') . '</th>
+            <th>Name' . self::create_sort_button('user_name') . '</th>
+            <th>Surname' . self::create_sort_button('user_surname') . '</th>
+            <th>Transaction ID' . self::create_sort_button('transaction_id') . '</th>
+            <th>Creation Date' . self::create_sort_button('created_at') . '</th>
+            <th>Update Date' . self::create_sort_button('updated_at') . '</th>
+            </tr></thead>';
 
         if ( $results ) {
             
-            echo '<table class="widefat" cellspacing="0">';
-            echo '<thead><tr>
-                <th>ID' . self::create_sort_button('id') . '</th>
-                <th>Status' . self::create_sort_button('status') . '</th>
-                <th>Amount' . self::create_sort_button('amount') . '</th>
-                <th>Description' . self::create_sort_button('description') . '</th>
-                <th>Email' . self::create_sort_button('user_email') . '</th>
-                <th>Name' . self::create_sort_button('user_name') . '</th>
-                <th>Surname' . self::create_sort_button('user_surname') . '</th>
-                <th>Transaction ID' . self::create_sort_button('transaction_id') . '</th>
-                <th>Creation Date' . self::create_sort_button('created_at') . '</th>
-                <th>Update Date' . self::create_sort_button('updated_at') . '</th>
-                </tr></thead>';
             echo '<tbody>';
             foreach ( $results as $row ) {
                 echo '<tr>';
@@ -103,12 +104,12 @@ class AdminDisplayHistory{
         }
 
         if( !empty($_GET['filter_amount_min'])){
-            $filters[] = 'amount > %f';
+            $filters[] = 'amount >= %f';
             $values[] = floatval($_GET['filter_amount_min']);
         };
         
         if( !empty($_GET['filter_amount_max'])){
-            $filters[] = 'amount < %f';
+            $filters[] = 'amount <= %f';
             $values[] = floatval($_GET['filter_amount_max']);
         };
 

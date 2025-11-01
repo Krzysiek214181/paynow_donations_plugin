@@ -32,7 +32,8 @@ class DbService
 
         $sql = "CREATE TABLE {$this->table} (
         id BIGINT(20) NOT NULL AUTO_INCREMENT,
-        transaction_id varchar(16) NOT NULL UNIQUE,
+        internal_ref varchar(50) NOT NULL UNIQUE,
+        transaction_id varchar(16) UNIQUE,
         amount DECIMAL(10,2) NOT NULL,
         status VARCHAR(10) NOT NULL DEFAULT 'NEW',
         description VARCHAR(255) NOT NULL,
@@ -51,7 +52,7 @@ class DbService
      * inserts the new payment into the wpdb, return false if failed
      * 
      *  @param array{
-     *       transaction_id: string,
+     *       internal_ref: string,
      *       amount: float,
      *       description: string,
      *       user_email: string,
@@ -66,7 +67,7 @@ class DbService
         $result = $this->db->insert(
             $this->table,
             [
-                "transaction_id" => $data["transaction_id"],
+                "internal_ref" => $data["internal_ref"],
                 "amount" => $data["amount"],
                 "description" => $data["description"],
                 "user_email" => $data["user_email"],
@@ -74,7 +75,7 @@ class DbService
                 "user_surname" => $data["user_surname"],
             ],
             [
-                '%s', // transaction_id
+                '%s', // internal_ref
                 '%f', // amount
                 '%s', // description
                 '%s', // user_email
@@ -82,6 +83,34 @@ class DbService
                 '%s', // user_surname
             ]
         );
+
+        return $result !== false;
+    }
+
+    /**
+     * adds the missing transaction_id to the transaction record
+     * @param array{
+     *      transaction_id: string,
+     *      internal_ref: string
+     * } $data
+     * @return boolean
+     */
+    public function addPaymentTransactionId(array $data){
+        $result = $this->db->update(
+            $this->table,
+            [
+                'transaction_id' => $data['transaction_id']
+            ],
+            [
+                'internal_ref' => $data['internal_ref']
+            ],
+            [
+                '%s'
+            ],
+            [
+                '%s'
+            ]
+            );
 
         return $result !== false;
     }

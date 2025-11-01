@@ -8,7 +8,10 @@ class Init
         return [
             Admin\AdminPages::class,
             Admin\AdminLinks::class,
-            Admin\AdminInit::class
+            Admin\AdminInit::class,
+            Base\FormShortcode::class,
+            Base\Enqueue::class,
+            Paynow\FormHandler::class
         ];
     }
     public static function register_services(){

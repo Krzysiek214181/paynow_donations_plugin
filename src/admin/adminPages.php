@@ -12,7 +12,7 @@ class AdminPages extends BaseController
     public function add_admin_pages(){
         add_menu_page('Paynow History', 'Paynow', 'manage_options', 'paynow_donations', [$this, 'admin_history'], 'dashicons-money-alt', 100);
         add_submenu_page('paynow_donations', 'Paynow History', 'History', 'manage_options', 'paynow_donations', [$this, 'admin_history']);
-        add_submenu_page('paynow_donations', 'Paynow Settings', 'Settings', 'manage_options', 'paynow_donations_settings', [$this, 'admin_settings']);
+        add_submenu_page('paynow_donations', 'Paynow Settings', 'Paynow Settings', 'manage_options', 'paynow_donations_settings', [$this, 'admin_settings']);
     }
 
     public function admin_history(){
