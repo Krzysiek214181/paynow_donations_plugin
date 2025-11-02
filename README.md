@@ -62,23 +62,7 @@ button_text | Donate | The main text display on the button
 #### full shortcode
 
 ```
-[
-paynow_donation_form
-main_text='Donate Here',
-user_legend='Donor Information',
-payment_legend='Payment Information',
-name_label='Name',
-name_placeholder='Full Name',
-surname_label='Surname',
-surname_placeholder='Surname',
-email_label='Email',
-email_placeholder='Email Address',
-description_label='Description',
-description_placeholder='Payment Description',
-amount_label='Amount',
-amount_placeholder='Amount',
-button_text='Donate'
-]
+[ paynow_donation_form main_text="Donate Here" user_legend="Donor Information" payment_legend="Payment Information" name_label="Name" name_placeholder="Full Name" surname_label="Surname" surname_placeholder="Surname" email_label="Email" email_placeholder="Email Address" description_label="Description" description_placeholder="Payment Description" amount_label="Amount" amount_placeholder="Amount" button_text="Donate" ]
 ```
 
 ### [paynow_return]
@@ -99,13 +83,5 @@ transaction_id | Your transaction ID is | The message after which the Transactio
 #### full shortcode
 
 ```
-[
-paynow_return
-button_text='Main Page',
-button_url='',
-success_msg='Thank you for your contribution',
-fail_msg='Something went wrong with your payment',
-show_id=true,
-transaction_id_ms='Your transaction ID is'
-]
+[ paynow_return button_text="Main Page" button_url=" success_msg="Thank you for your contribution" fail_msg="Something went wrong with your payment" show_id=true transaction_id_ms="Your transaction ID is" ]
 ```

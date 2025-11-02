@@ -6,12 +6,16 @@ class DbService
 {
     private $db;
     private $table;
+    private $debug_table;
     private $table_suffix = "paynow_donations_transactions";
+    private $debug_table_suffix = "paynow_donations_debug";
+    
 
     public function __construct(){
         global $wpdb;
         $this->db = $wpdb;
         $this->table = $this->db->prefix . $this->table_suffix;
+        $this->debug_table = $this->db->prefix . $this->debug_table_suffix;
     }
 
     /**
@@ -20,10 +24,6 @@ class DbService
      */
     public function register(){
 
-        if( $this->table_exists()){
-            return;
-        }
-        
         if ( ! function_exists( 'dbDelta' ) ) {
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         }
@@ -45,7 +45,42 @@ class DbService
         PRIMARY KEY  (id)
         ) $charset_collate;"; 
 
-        dbDelta( $sql );
+        $debugSql = "CREATE TABLE {$this->debug_table} (
+        id BIGINT(20) NOT NULL AUTO_INCREMENT,
+        transaction_id varchar(16),
+        status varchar(10),
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id)) $charset_collate;";
+
+        if( !$this->table_exists($this->table)){
+            dbDelta( $sql );
+        }
+        
+        if( !$this->table_exists($this->debug_table)){
+            dbDelta( $debugSql );
+        }
+
+        return;
+    }
+
+    /**
+     * inserts the notification information into the debug table
+     * @param array {
+     *      transaction_id: string,
+     *      status: string
+     * }$data
+     * @return boolean
+     */
+    public function debugNewNotification(array $data){
+        $result = $this->db->insert(
+            $this->debug_table,
+            $data,
+            [
+                '%s',
+                '%s'
+            ]
+        );
+        return $result !== false;
     }
 
     /**
@@ -163,11 +198,11 @@ class DbService
         return in_array( $status, $allowed_status_array);
     }
 
-    private function table_exists() {
+    private function table_exists($arg) {
         $sql = $this->db->prepare(
             "SHOW TABLES LIKE %s",
-            $this->table
+            $arg
         );
-        return $this->db->get_var( $sql ) === $this->table;
+        return $this->db->get_var( $sql ) === $arg;
     }
 }

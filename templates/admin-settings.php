@@ -1,6 +1,8 @@
 <?php
 $apiKey = get_option('paynow_apiKey', '');
 $signatureKey = get_option('paynow_signatureKey', '');
+$environment = get_option('paynow_environment', '');
+$isSandbox = ($environment === 'SANDBOX')
 ?>
 
 <div class="wrap">
@@ -16,6 +18,15 @@ $signatureKey = get_option('paynow_signatureKey', '');
             <tr valign="top">
                 <th scope="row">Signature Key</th>
                 <td><input id="paynow_signatureKey" type="password" name="paynow_signatureKey" value="<?php echo esc_attr($signatureKey); ?>" class="regular-text" style="margin-right: 8px" /><button type="button" class="button toggle-password" data-target="paynow_signatureKey">Show</button></td>
+            </tr>
+            <tr valing="top">
+                <th scope="row">Environment</th>
+                <td>
+                    <select>
+                        <option value="SANDBOX" <?php selected($environment, 'SANDBOX') ?>>SANDBOX</option>
+                        <option value="PRODUCTION" <?php selected($environment, 'PRODUCTION')?>>PRODUCTION</option>
+                    </select>
+                </td>
             </tr>
         </table>
         <?php submit_button(); ?>

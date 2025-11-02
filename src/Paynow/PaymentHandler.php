@@ -17,8 +17,10 @@ class PaymentHandler
     public function __construct(){
         $paynowApiKey = get_option('paynow_apiKey');
         $paynowSignatureKey =  get_option('paynow_signatureKey');
+        $environment_option = get_option('paynow_environment');
+        $environment = ($environment_option === "PRODUCTION") ? Environment::PRODUCTION : Environment::SANDBOX;
         $this->dbService = new DbService();
-        $this->paynowService = new Client($paynowApiKey, $paynowSignatureKey, Environment::SANDBOX);
+        $this->paynowService = new Client($paynowApiKey, $paynowSignatureKey, $environment);
     }
 
     /**
