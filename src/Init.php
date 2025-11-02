@@ -11,7 +11,8 @@ class Init
             Admin\AdminInit::class,
             Base\FormShortcode::class,
             Base\Enqueue::class,
-            Paynow\FormHandler::class
+            Paynow\FormHandler::class,
+            Paynow\NotificationHandler::class
         ];
     }
     public static function register_services(){
