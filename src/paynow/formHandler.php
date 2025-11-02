@@ -12,6 +12,7 @@ class FormHandler
     public function __construct(){
         $this->paymentHandler = new PaymentHandler();
     }
+    //
     public function register(){
         add_action('admin_post_paynow_submit_donation', [$this, 'paynow_handle_donation_submit']);
         add_action('admin_post_nopriv_paynow_submit_donation', [$this, 'paynow_handle_donation_submit']);
