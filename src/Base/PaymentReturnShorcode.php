@@ -19,7 +19,7 @@ class PaymentReturnShorcode
         ], $atts);
 
         $transaction_id = isset($_GET['paymentId']) ? sanitize_text_field($_GET['paymentId']) : '';
-        $status = isset($_GET['status']) ? sanitize_text_field($_GET['paymentStatus']) : '';
+        $status = isset($_GET['paymentStatus']) ? sanitize_text_field($_GET['paymentStatus']) : '';
 
         $message = "";
         $transacionIdMessage = "";
