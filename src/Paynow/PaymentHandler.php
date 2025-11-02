@@ -38,6 +38,7 @@ class PaymentHandler
 
         $errorMessage = "Oops! We couldn't process your payment at the moment. Please try again later.";
         $internal_ref = Uuid::uuid4()->toString();
+        $idempotencyKey = $internal_ref;
 
         $newPaymentResult = $this->dbService->newPayment([
             'internal_ref'  => $internal_ref,

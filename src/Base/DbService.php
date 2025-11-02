@@ -47,7 +47,7 @@ class DbService
 
         $debugSql = "CREATE TABLE {$this->debug_table} (
         id BIGINT(20) NOT NULL AUTO_INCREMENT,
-        transaction_id varchar(16),
+        internal_ref varchar(50),
         status varchar(10),
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id)) $charset_collate;";
@@ -66,7 +66,7 @@ class DbService
     /**
      * inserts the notification information into the debug table
      * @param array {
-     *      transaction_id: string,
+     *      internal_ref: string,
      *      status: string
      * }$data
      * @return boolean
@@ -171,7 +171,7 @@ class DbService
                 'status' => $data['new_status']
             ],
             [
-                'transaction_id' => $data['transaction_id']
+                'internal_ref' => $data['internal_ref']
             ],
             [
                 '%s'

@@ -46,11 +46,11 @@ class NotificationHandler
         try {
             new Notification($this->signatureKey, $payload, $normalizedHeaders);
             $this->dbService->debugNewNotification([
-                'transaction_id' => $notificationData['paymentId'],
+                'internal_ref' => $notificationData['externalId'],
                 'status' => $notificationData['status']
             ]);
             $this->dbService->updatePaymentStatus([
-                'transaction_id' => $notificationData['paymentId'],
+                'internal_ref' => $notificationData['externalId'],
                 'new_status' => $notificationData['status']
             ]);
 
