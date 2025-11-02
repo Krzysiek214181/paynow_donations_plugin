@@ -45,11 +45,11 @@ if( class_exists('Src\\Init')){
 }
 
 function activate_paynow_donations_plugin(){
-    Src\Base\Activate::activate();
+    Activate::activate();
 }
 
 function deactivate_paynow_donations_plugin(){
-    Src\Base\Deactivate::deactivate();
+    Deactivate::deactivate();
 }
 
 register_activation_hook( __FILE__ , 'activate_paynow_donations_plugin');
