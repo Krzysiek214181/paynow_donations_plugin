@@ -34,8 +34,8 @@ class PaymentHandler
      */
     public function registerNewPayment($data){
 
+        $errorMessage = "Oops! We couldn't process your payment at the moment. Please try again later.";
         $internal_ref = Uuid::uuid4()->toString();
-        $idempotencyKey = uniqid($internal_ref . '_');
 
         $newPaymentResult = $this->dbService->newPayment([
             'internal_ref'  => $internal_ref,
@@ -47,13 +47,12 @@ class PaymentHandler
         ]);
 
         if (!$newPaymentResult) {
-            $message = "Oops! We couldn't process your payment at the moment. Please try again later.";
-            echo "<div class='alert alert-danger'>{$message}</div>";
+            echo "<div class='alert alert-danger'>{$errorMessage}</div>";
             return "";
         }
 
         $payment_data = [
-            'amount' => $data['amount']*100,
+            'amount' => (string) ($data['amount']*100),
             'externalId' => $internal_ref,
             'description' => $data['description'],
             'buyer' => [
@@ -65,10 +64,25 @@ class PaymentHandler
 
         try{
             $payment = new Payment($this->paynowService);
-            $result = $payment->authorize($payment_data, $idempotencyKey);   
-            echo json_encode($result);
+            $result = $payment->authorize($payment_data);   
+            echo $result->getPaymentId();
+            echo $result->getStatus();
+            echo $result->getRedirectUrl();
+
+            $insertIdResult = $this->dbService->addPaymentTransactionId([
+                'transaction_id' => $result->getPaymentId(),
+                'internal_ref' => $internal_ref
+            ]);
+
+            if(!$insertIdResult){
+                echo "<div class='alert alert-danger'>{$errorMessage}</div>";
+                return "";
+            }
+
         }catch(PaynowException $exception){
             //TODO
+            echo $exception->getMessage();
+            echo $exception->getCode();
         }
         
         return "";
