@@ -36,12 +36,6 @@ To set up a testing environment you basically have to follow the Setup above, th
 
 As mentioned before, the plugin implements *two* shortcodes
 
-The attributes will be presented in the following form:
-
-```
-'attribute_name' => 'default_value' // explanation
-```
-
 ### [paynow_donation_form]
 
 This shorcodes generates a custom form that enables your site's visitors to make easy donations.
@@ -70,20 +64,20 @@ button_text | Donate | The main text display on the button
 ```
 [
 paynow_donation_form
-'main_text' => 'Donate Here',
-'user_legend' => 'Donor Information',
-'payment_legend' => 'Payment Information',
-'name_label' => 'Name',
-'name_placeholder' => 'Full Name',
-'surname_label' => 'Surname',
-'surname_placeholder' => 'Surname',
-'email_label' => 'Email',
-'email_placeholder' => 'Email Address',
-'description_label' => 'Description',
-'description_placeholder' => 'Payment Description',
-'amount_label' => 'Amount',
-'amount_placeholder' => 'Amount',
-'button_text' => 'Donate'
+main_text='Donate Here',
+user_legend='Donor Information',
+payment_legend='Payment Information',
+name_label='Name',
+name_placeholder='Full Name',
+surname_label='Surname',
+surname_placeholder='Surname',
+email_label='Email',
+email_placeholder='Email Address',
+description_label='Description',
+description_placeholder='Payment Description',
+amount_label='Amount',
+amount_placeholder='Amount',
+button_text='Donate'
 ]
 ```
 
@@ -107,11 +101,11 @@ transaction_id | Your transaction ID is | The message after which the Transactio
 ```
 [
 paynow_return
-'button_text' => 'Main Page',
-'button_url' => '',
-'success_msg' => 'Thank you for your contribution',
-'fail_msg' => 'Something went wrong with your payment',
-'show_id' => true,
-'transaction_id_msg'=> 'Your transaction ID is'
+button_text='Main Page',
+button_url='',
+success_msg='Thank you for your contribution',
+fail_msg='Something went wrong with your payment',
+show_id=true,
+transaction_id_ms='Your transaction ID is'
 ]
 ```

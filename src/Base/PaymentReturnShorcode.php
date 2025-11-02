@@ -10,12 +10,12 @@ class PaymentReturnShorcode
 
     public static function render($atts){
         $atts = shortcode_atts([
-            'buttonText' => 'Main Page',
-            'buttonUrl' => '',
-            'successMsg' => 'Thank you for your contribution',
-            'failMsg' => 'Something went wrong with your payment',
-            'showId' => true,
-            'transactionIdMsg'=> 'Your transaction ID is'
+            'button_text' => 'Main Page',
+            'button_url' => '',
+            'success_msg' => 'Thank you for your contribution',
+            'fail_msg' => 'Something went wrong with your payment',
+            'show_id' => true,
+            'transaction_id_msg'=> 'Your transaction ID is'
         ], $atts);
 
         $transaction_id = isset($_GET['paymentId']) ? sanitize_text_field($_GET['paymentId']) : '';
@@ -25,13 +25,13 @@ class PaymentReturnShorcode
         $transacionIdMessage = "";
 
         if($status == "CONFIRMED"){
-            $message = $atts['successMsg'];
+            $message = $atts['success_msg'];
         }else{
-            $message = $atts['failMsg'];
+            $message = $atts['fail_msg'];
         }
 
-        if (filter_var($atts['showId'], FILTER_VALIDATE_BOOLEAN) && !empty($transaction_id)) {
-            $transacionIdMessage .= esc_html($atts['transactionIdMsg']) . ' <strong>' . esc_html($transaction_id) . '</strong>';
+        if (filter_var($atts['show_id'], FILTER_VALIDATE_BOOLEAN) && !empty($transaction_id)) {
+            $transacionIdMessage .= esc_html($atts['transaction_id_msg']) . ' <strong>' . esc_html($transaction_id) . '</strong>';
         }
 
         ob_start();
