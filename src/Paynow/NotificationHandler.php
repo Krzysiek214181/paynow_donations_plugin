@@ -37,6 +37,7 @@ class NotificationHandler
         }
 
         if(empty($payload)){
+            error_log('[paynow_donations] received empty notification');
             return new WP_REST_Response(null, 400);
         }
     
