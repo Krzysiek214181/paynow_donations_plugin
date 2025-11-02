@@ -18,8 +18,8 @@ class PaymentReturnShorcode
             'transactionIdMsg'=> 'Your transaction ID is'
         ], $atts);
 
-        $transaction_id = isset($_GET['paymentID']) ? sanitize_text_field($_GET['paymentID']) : '';
-        $status = isset($_GET['status']) ? sanitize_text_field($_GET['status']) : '';
+        $transaction_id = isset($_GET['paymentId']) ? sanitize_text_field($_GET['paymentId']) : '';
+        $status = isset($_GET['status']) ? sanitize_text_field($_GET['paymentStatus']) : '';
 
         $message = "";
         $transacionIdMessage = "";
