@@ -31,7 +31,13 @@ class FormHandler
             'amount'      => floatval($_POST['paynow_amount'] ?? 0),
         ];
 
-        $this->paymentHandler->registerNewPayment($data);
+        $redirectUlr = $this->paymentHandler->registerNewPayment($data);
+
+        if(!empty($redirectUlr)){
+            wp_redirect($redirectUlr);
+        }
+
+        echo "Something went wrong, please try again";
     
         exit;
     }

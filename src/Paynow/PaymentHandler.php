@@ -65,9 +65,6 @@ class PaymentHandler
         try{
             $payment = new Payment($this->paynowService);
             $result = $payment->authorize($payment_data);   
-            echo $result->getPaymentId();
-            echo $result->getStatus();
-            echo $result->getRedirectUrl();
 
             $insertIdResult = $this->dbService->addPaymentTransactionId([
                 'transaction_id' => $result->getPaymentId(),
@@ -79,13 +76,12 @@ class PaymentHandler
                 return "";
             }
 
+            return $result->getRedirectUrl();
+
         }catch(PaynowException $exception){
-            //TODO
-            echo $exception->getMessage();
-            echo $exception->getCode();
+            echo "<div class='alert alert-danger'>{$errorMessage}</div>";
+            return "";
         }
-        
-        return "";
     }
 
 }

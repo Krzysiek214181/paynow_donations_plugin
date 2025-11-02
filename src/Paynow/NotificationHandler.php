@@ -22,19 +22,22 @@ class NotificationHandler
         add_action('rest_api_init', function() {
             register_rest_route('paynowdonations', '/notify', [
                 'methods' => 'POST',
-                'callback' => 'paynow_handle_notification',
+                'callback' => [$this, 'paynow_handle_notification'],
                 'permission_callback' => '__return_true'
             ]);
         });
     }
 
     public function paynow_handle_notification(WP_REST_Request $request) {
-        
         $payload = $request->get_body();
         $headers = $request->get_headers();
         $normalizedHeaders = [];
         foreach ($headers as $key => $value) {
             $normalizedHeaders[$key] = is_array($value) ? $value[0] : $value;
+        }
+
+        if(empty($payload)){
+            return new WP_REST_Response(null, 400);
         }
     
         $notificationData = json_decode($payload, true);
