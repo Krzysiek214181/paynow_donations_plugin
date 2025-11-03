@@ -21,5 +21,5 @@ global $wpdb;
 
 $table_name = $wpdb->prefix . 'paynow_donations_transactions';
 $debug_table_name = $wpdb->prefix .'paynow_donations_debug';
-$wpdb->query("DROP TABLE IF EXISTIS $table_name");
-$wpdb->query("DROP TABLE IF EXISTIS $debug_table_name");
+$wpdb->query("DROP TABLE IF EXISTS $table_name");
+$wpdb->query("DROP TABLE IF EXISTS $debug_table_name");
