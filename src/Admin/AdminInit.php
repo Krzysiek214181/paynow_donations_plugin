@@ -15,7 +15,10 @@ class AdminInit
         register_setting('paynow_donations_settings_group', 'paynow_signatureKey', [
             'sanitize_callback' => 'sanitize_text_field'
         ]);
-        register_setting('paynow_donations_settings_group', 'paynow_enivronment', [
+        register_setting('paynow_donations_settings_group', 'paynow_environment', [
+            'sanitize_callback' => 'sanitize_text_field'
+        ]);
+        register_setting('paynow_donations_settings_group', 'paynow_debug', [
             'sanitize_callback' => 'sanitize_text_field'
         ]);
     }

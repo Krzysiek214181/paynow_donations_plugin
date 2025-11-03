@@ -2,7 +2,7 @@
 $apiKey = get_option('paynow_apiKey', '');
 $signatureKey = get_option('paynow_signatureKey', '');
 $environment = get_option('paynow_environment', '');
-$isSandbox = ($environment === 'SANDBOX')
+$debug = get_option('paynow_debug', '');
 ?>
 
 <div class="wrap">
@@ -22,9 +22,18 @@ $isSandbox = ($environment === 'SANDBOX')
             <tr valing="top">
                 <th scope="row">Environment</th>
                 <td>
-                    <select>
+                    <select id="paynow_environment" name="paynow_environment">
                         <option value="SANDBOX" <?php selected($environment, 'SANDBOX') ?>>SANDBOX</option>
                         <option value="PRODUCTION" <?php selected($environment, 'PRODUCTION')?>>PRODUCTION</option>
+                    </select>
+                </td>
+            </tr>
+            <tr valing="top">
+                <th scope="row">Debug</th>
+                <td>
+                    <select id="paynow_debug" name="paynow_debug">
+                        <option value="ON" <?php selected($debug, 'ON') ?>>ON</option>
+                        <option value="OFF" <?php selected($debug, 'OFF')?>>OFF</option>
                     </select>
                 </td>
             </tr>
