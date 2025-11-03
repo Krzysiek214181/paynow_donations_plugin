@@ -19,7 +19,7 @@ class DbService
     }
 
     /**
-     * creates required wp_paynow_donations_transactions table
+     * creates required wp_paynow_donations_transactions table and wp_paynow_donations_debug table
      * @return void
      */
     public function register(){
@@ -88,7 +88,6 @@ class DbService
 
     /**
      * inserts the new payment into the wpdb, return false if failed
-     * 
      *  @param array{
      *       internal_ref: string,
      *       amount: float,
@@ -154,8 +153,7 @@ class DbService
     }
 
     /** 
-     * updates payment status if the status is an allowed predefined status, also updates the paymentID
-     * 
+     * updates payment status if the status is an allowed predefined status, also updates the paymentID, doesn't change the status if it's already CONFIRMED
      * @param array{
      *      transaction_id: string,
      *      internal_ref: string,
@@ -166,6 +164,11 @@ class DbService
     */
     public function updatePayment(array $data){
         if( ! $this->verifyStatus( $data['new_status'])){
+            return false;
+        }
+
+        //don't change the status if it's already confirmed ( fix for phantom notifications send by paynow after the payment is finished )
+        if( $this->getCurrentStatus($data['internal_ref']) === 'CONFIRMED'){
             return false;
         }
 
@@ -190,6 +193,22 @@ class DbService
         return $result !== false;
     }
 
+     /**
+     * Returns the status of the payment by internal_ref
+     * @param string $arg
+     * @return string
+     */
+    public function getCurrentStatus(string $internal_ref){
+        $query = $this->db->prepare("SELECT status from {$this->table} WHERE interlan_ref = %s LIMIT 1". $internal_ref);
+        $status = $this->db->get_var($query);
+        return $status;
+    }
+
+    /**
+     * Check the given status agaainst the list of predefined statuses
+     * @param string $status
+     * @return bool
+     */
     private function verifyStatus(string $status){
         $allowed_status_array = [
             'NEW',
@@ -203,12 +222,17 @@ class DbService
 
         return in_array( $status, $allowed_status_array);
     }
-
-    private function table_exists($arg) {
+   
+    /**
+     * Check if the table exists
+     * @param string $table_name
+     * @return bool
+     */
+    private function table_exists(string $table_name) {
         $sql = $this->db->prepare(
             "SHOW TABLES LIKE %s",
-            $arg
+            $table_name
         );
-        return $this->db->get_var( $sql ) === $arg;
+        return $this->db->get_var( $sql ) === $table_name;
     }
 }

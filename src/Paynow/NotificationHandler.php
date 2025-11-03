@@ -28,6 +28,11 @@ class NotificationHandler
         });
     }
 
+    /**
+     * Handles new paynow notification, logs it to debug, changes the status of the payment
+     * @param \WP_REST_Request $request
+     * @return WP_REST_Response
+     */
     public function paynow_handle_notification(WP_REST_Request $request) {
         $payload = $request->get_body();
         $headers = $request->get_headers();
