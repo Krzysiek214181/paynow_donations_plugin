@@ -34,7 +34,7 @@ class FormHandler
         $redirectUlr = $this->paymentHandler->registerNewPayment($data);
 
         if(!empty($redirectUlr)){
-            wp_redirect($redirectUlr);
+            wp_safe_redirect($redirectUlr);
         }
 
         echo "Something went wrong, please try again";

@@ -7,17 +7,42 @@ class AdminPages extends BaseController
 {
     public static $adminSubPages = [];
     public function register(){
-        $this->add_subpage(['page_title' => 'Paynow History', 'menu_title' => 'History', 'callback' => [$this, 'admin_history']]);
-        $this->add_subpage( ['page_title' => 'Paynow Settings', 'menu_title' => 'Settings', 'menu_slug' => 'paynow_settings','callback' => [$this, 'admin_settings']]);
+        // add history subpage ( same as main page ) for better menu title
+        $this->add_subpage(
+        [
+            'page_title' => 'Paynow History', 
+            'menu_title' => 'History', 
+            'callback' => [$this, 'admin_history'], 
+            'capabilities' => 'edit_others_posts'
+        ]);
+        // add settings subpage
+        $this->add_subpage( 
+        [
+            'page_title' => 'Paynow Settings', 
+            'menu_title' => 'Settings', 
+            'menu_slug' => 'paynow_settings', 
+            'callback' => [$this, 'admin_settings'], 
+            'capabilities' => 'edit_others_posts'
+        ]);
+
+        // if debug is on, add debug subpage
         if(get_option('paynow_debug')){
-            $this->add_subpage(['page_title' => 'Paynow Debug', 'menu_title' => 'Debug', 'menu_slug' => 'paynow_debug', 'callback' => [$this, 'admin_debug']]);
+            $this->add_subpage(
+            [
+                'page_title' => 'Paynow Debug', 
+                'menu_title' => 'Debug', 
+                'menu_slug' => 'paynow_debug', 
+                'callback' => [$this, 'admin_debug']]);
         }
+
         add_action( 'admin_menu', [$this, 'add_admin_pages']);
     }
 
     public function add_admin_pages(){
-        error_log(json_encode(self::$adminSubPages));
-        add_menu_page('Paynow History', 'Paynow', 'manage_options', 'paynow_donations', [$this, 'admin_history'], 'dashicons-money-alt', 100);
+        //add main admin page ( history page )
+        add_menu_page('Paynow History', 'Paynow', 'edit_others_posts', 'paynow_donations', [$this, 'admin_history'], 'dashicons-money-alt', 100);
+
+        //add all subpages defined using add_subpage() function
         foreach(self::$adminSubPages as $page){
             add_submenu_page($page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capabilites'], $page['menu_slug'], $page['callback']);
         }

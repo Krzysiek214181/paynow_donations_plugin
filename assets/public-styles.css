@@ -37,3 +37,8 @@
     text-align: center;
     width: 100dvw;
 }
+
+.paynowDonationsReturnButton{
+    font-size: 24px;
+    padding: 8px 16px;
+}

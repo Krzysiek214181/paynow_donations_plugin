@@ -39,19 +39,48 @@ class FormShortcode
 
                 <span style="display: flex; width: 100%; gap:26px;">
                     <p style="width:48%; align-self: flex-start;">
-                        <label><?php echo esc_html($atts['name_label']); ?>:</label><br>
-                        <input style="width:100%;" type="text" name="paynow_name"  placeholder="<?php echo esc_html($atts['name_placeholder'])?>" required>
+                        <label>
+                            <?php echo esc_html($atts['name_label']); ?>:
+                        </label>
+                        <br>
+                        <input 
+                            style="width:100%;" 
+                            type="text" 
+                            name="paynow_name"  
+                            placeholder="<?php echo esc_html($atts['name_placeholder'])?>" 
+                            required
+                        >
                     </p>
 
                     <p style="width:48%; align-self: flex-end;">
-                        <label><?php echo esc_html($atts['surname_label']); ?>:</label><br>
-                        <input style="width:100%;" type="text" name="paynow_surname" placeholder="<?php echo esc_html($atts['surname_placeholder'])?>" required>
+                        <label>
+                            <?php echo esc_html($atts['surname_label']); ?>:
+                        </label>
+                        <br>
+                        <input 
+                            style="width:100%;" 
+                            type="text" 
+                            name="paynow_surname" 
+                            placeholder="<?php echo esc_html($atts['surname_placeholder'])?>" 
+                            required
+                        >
                     </p>
                 </span>
 
                 <p>
-                    <label><?php echo esc_html($atts['email_label']); ?>:</label><br>
-                    <input style="width:100%; "type="email" name="paynow_email" placeholder="<?php echo esc_html($atts['email_placeholder'])?>" required>
+                    <label>
+                        <?php echo esc_html($atts['email_label']); ?>:
+                    </label>
+                    <br>
+                    <input 
+                        style="width:100%;"
+                        type="email" 
+                        name="paynow_email" 
+                        pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" 
+                        title="Please enter a valid email address like example@domain.com" 
+                        placeholder="<?php echo esc_html($atts['email_placeholder'])?>" 
+                        required\
+                    >
                 </p>
             </fieldset>
             
@@ -59,13 +88,34 @@ class FormShortcode
                 <legend><?php echo esc_html($atts['payment_legend'])?></legend>
                 
                 <p>
-                    <label><?php echo esc_html($atts['description_label']); ?>:</label><br>
-                    <input style="width:100%;" type="text" name="paynow_description" placeholder="<?php echo esc_html($atts['description_placeholder'])?>" required>
+                    <label>
+                        <?php echo esc_html($atts['description_label']); ?>:
+                    </label>
+                    <br>
+                    <input 
+                        style="width:100%;" 
+                        type="text" 
+                        name="paynow_description" 
+                        placeholder="<?php echo esc_html($atts['description_placeholder'])?>" 
+                        required
+                    >
                 </p>
 
                 <p>
-                    <label><?php echo esc_html($atts['amount_label']); ?>:</label><br>
-                    <input style="width:100%" type="number" name="paynow_amount" step="0.01" min="1" max="1000000" placeholder="<?php echo esc_html($atts['amount_placeholder'])?>" required>
+                    <label>
+                        <?php echo esc_html($atts['amount_label']); ?>:
+                    </label>
+                    <br>
+                    <input 
+                        style="width:100%" 
+                        type="number" 
+                        name="paynow_amount" 
+                        step="0.01" 
+                        min="1" 
+                        max="1000000" 
+                        placeholder="<?php echo esc_html($atts['amount_placeholder'])?>" 
+                        required
+                        >
                 </p>
             </fieldset>
             <p style="width: 80%;">

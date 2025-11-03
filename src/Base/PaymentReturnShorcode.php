@@ -45,6 +45,12 @@ class PaymentReturnShorcode
             <p id="paynow_return_transaction_id">
                 <?php echo $transacionIdMessage?>
             </p>
+
+            <a href="<?php echo esc_html($atts['button_url'])?>">
+                <button class="paynowDonationsReturnButton">
+                    <?php echo esc_html($atts['button_text'])?>
+                </button>
+            </a>
         </div>
 
 

@@ -29,8 +29,8 @@ class AdminInit
     }
 
     public function add_allowed_hosts($hosts){
-        $hosts[] = '';
-        $hosts[] = '';
+        $hosts[] = 'paywall.sandbox.paynow.pl';
+        $hosts[] = 'paywall.paynow.pl';
         return $hosts;
     }
 }
