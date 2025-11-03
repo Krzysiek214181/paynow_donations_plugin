@@ -18,7 +18,7 @@ use \Src\Admin\AdminDisplayHistory;
         <option value="ABANDONED" <?php selected($_GET['filter_status'] ?? '', 'ABANDONED'); ?>>ABANDONED</option>
     </select>
 
-    <select style="margin-top: -5px;" name="filet_limit">
+    <select style="margin-top: -5px;" name="filter_limit">
         <option value="25" <?php selected($_GET['filter_limit'] ?? '', '25')?>>25 results</option>
         <option value="50" <?php selected($_GET['filter_limit'] ?? '', '50'); ?>>50 results</option>
         <option value="75" <?php selected($_GET['filter_limit'] ?? '', '75'); ?>>75 results</option>
@@ -28,7 +28,7 @@ use \Src\Admin\AdminDisplayHistory;
 
     <input type="number" step="0.01" name="filter_amount_min" placeholder="minimum amount" value="<?php echo esc_attr($_GET['filter_amount_min'] ?? ''); ?>">
     <input type="number" step="0.01" name="filter_amount_max" placeholder="maximum amount" value="<?php echo esc_attr($_GET['filter_amount_max'] ?? ''); ?>">
-    <input style="margin-bottom: 8px;" type="text" name="filter_description" placeholder="description" value="<?php echo esc_attr($_GET['filter_descriptions'] ?? ''); ?>">
+    <input style="margin-bottom: 8px;" type="text" name="filter_description" placeholder="description" value="<?php echo esc_attr($_GET['filter_description'] ?? ''); ?>">
 </br>
     <input type="email" name="filter_email" placeholder="email" value="<?php echo esc_attr($_GET['filter_email'] ?? ''); ?>">
     <input type="text" name="filter_name" placeholder="name" value="<?php echo esc_attr($_GET['filter_name'] ?? ''); ?>">
