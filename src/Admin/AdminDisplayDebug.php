@@ -31,7 +31,7 @@ class AdminDisplayDebug
 
         $results = $wpdb->get_results($query, ARRAY_A);
 
-        echo '<table class="widefat" cellspacing="0">';
+        echo '<table class="widefat paynowDonationsTable" cellspacing="0">';
         echo '<thead><tr>
             <th>ID' . self::create_sort_button('id') . '</th>
             <th>Status' . self::create_sort_button('status') . '</th>
@@ -61,6 +61,7 @@ class AdminDisplayDebug
     }
 
     /**
+     * builts the SQL where clause based on the URL filter_ params
      * @return array{values: array, where: string}
      */
     private static function build_where_clause(){
@@ -103,8 +104,8 @@ class AdminDisplayDebug
     }
 
     private static function create_sort_button($column_id){
-        $current_sortby = isset($_GET['sortby']) ? $_GET['sortby'] : 'id';
-        $current_desc = isset( $_GET['desc']) ? $_GET['desc'] : '1';
+        $current_sortby = $_GET['sortby'] ?? 'id';
+        $current_desc = $_GET['desc'] ?? '1';
 
         $desc = ($current_sortby === $column_id && $current_desc === '0') ? 1 : 0;
 

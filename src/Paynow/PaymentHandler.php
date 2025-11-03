@@ -18,7 +18,7 @@ class PaymentHandler
         $paynowApiKey = get_option('paynow_apiKey');
         $paynowSignatureKey =  get_option('paynow_signatureKey');
         $environment_option = get_option('paynow_environment');
-        $environment = ($environment_option === "PRODUCTION") ? Environment::PRODUCTION : Environment::SANDBOX;
+        $environment = $environment_option ? Environment::PRODUCTION : Environment::SANDBOX;
         $this->dbService = new DbService();
         $this->paynowService = new Client($paynowApiKey, $paynowSignatureKey, $environment);
     }
@@ -36,9 +36,8 @@ class PaymentHandler
      */
     public function registerNewPayment($data){
 
-        $errorMessage = "Oops! We couldn't process your payment at the moment. Please try again later.";
+        $errorMessage = "We couldn't process your payment at the moment";
         $internal_ref = Uuid::uuid4()->toString();
-        $idempotencyKey = $internal_ref;
 
         $newPaymentResult = $this->dbService->newPayment([
             'internal_ref'  => $internal_ref,
@@ -49,7 +48,7 @@ class PaymentHandler
             'user_surname'     => $data['surname']
         ]);
 
-        if (!$newPaymentResult) {
+        if (!$newPaymentResult) { // if failed to insert new payment abort
             echo "<div class='alert alert-danger'>{$errorMessage}</div>";
             return "";
         }
@@ -74,7 +73,7 @@ class PaymentHandler
                 'internal_ref' => $internal_ref
             ]);
 
-            if(!$insertIdResult){
+            if(!$insertIdResult){ // if unable to attach the paymentId abort
                 echo "<div class='alert alert-danger'>{$errorMessage}</div>";
                 return "";
             }

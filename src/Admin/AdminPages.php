@@ -9,7 +9,7 @@ class AdminPages extends BaseController
     public function register(){
         $this->add_subpage(['page_title' => 'Paynow History', 'menu_title' => 'History', 'callback' => [$this, 'admin_history']]);
         $this->add_subpage( ['page_title' => 'Paynow Settings', 'menu_title' => 'Settings', 'menu_slug' => 'paynow_settings','callback' => [$this, 'admin_settings']]);
-        if(get_option('paynow_debug') === "ON"){
+        if(get_option('paynow_debug')){
             $this->add_subpage(['page_title' => 'Paynow Debug', 'menu_title' => 'Debug', 'menu_slug' => 'paynow_debug', 'callback' => [$this, 'admin_debug']]);
         }
         add_action( 'admin_menu', [$this, 'add_admin_pages']);

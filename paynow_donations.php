@@ -1,7 +1,6 @@
 <?php
 
 use Src\Base\Activate;
-use Src\Base\Deactivate;
 
 /**
 *   @package PaynowDonations
@@ -48,9 +47,4 @@ function activate_paynow_donations_plugin(){
     Activate::activate();
 }
 
-function deactivate_paynow_donations_plugin(){
-    Deactivate::deactivate();
-}
-
 register_activation_hook( __FILE__ , 'activate_paynow_donations_plugin');
-register_deactivation_hook(__FILE__,'deactivate_paynow_donations_plugin');
