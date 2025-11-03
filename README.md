@@ -20,6 +20,8 @@ To set up the plugin you have to be the owner of an active [paynow account](http
 
 Simply copy the `ApiKey` and `SignatureKey` from your paynow panel into the corresponding field in the **Paynow -> Paynow Settings** menu and save them.
 
+Set the `Environment` setting to `PRODUCTION`
+
 In your paynow panel set up the correct `Shop Domain`  
 
 Set the `Notifications URL` to `https://yourdomain.example/wp-json/paynownotifications/notify`
@@ -30,7 +32,10 @@ Set the `Return address` to a site where you'll use the `[paynow_return]` shortc
 
 To set up a testing environment you basically have to follow the Setup above, the only difference is instead of creating a real paynow account, you sign up for a [testing one](https://panel.sandbox.paynow.pl/auth/register)
 
-> Please note that in order to use the sandbox testing your site must be avaible under a public domain
+Make sure to also change the `Environment` setting to `SANDBOX`
+
+> [!WARNING]
+> in order to ( properly ) use the sandbox testing your site must be avaible under a public domain ( for notifications purposes )
 
 ## Shortcodes
 
@@ -85,3 +90,46 @@ transaction_id | Your transaction ID is | The message after which the Transactio
 ```
 [ paynow_return button_text="Main Page" button_url=" success_msg="Thank you for your contribution" fail_msg="Something went wrong with your payment" show_id=true transaction_id_ms="Your transaction ID is" ]
 ```
+
+## Admin Pages
+
+This plugin creates **3** wordpress menu subpages
+
+### History
+
+This menu is avaible for users with the `Editor` Role ( or higher ). It allows you to track the payments from the perspective of your server.
+
+This site features sorting by all columns and filtering by the following params:
+* Statuses ( NEW, PENDING, CONFIRMED, REJECTED, ERROR, EXPIRED, ABANDONED )
+* Amount of results ( 25, 50, 75, 100, 1000 )
+* Minimum and maximum amount
+* Description
+* Email
+* Name
+* Surname
+* Transaction ID
+
+### Settings
+
+This menu is avaible only to the `Admin` role. Here you can configure the plugin with the following settings:
+* API Key - The API Key copied from the paynow panel
+* Signature Key - The Signature Key copied from the paynow panel
+* Environment - SANDBOX / PRODUCTION
+* Debug - ON / OFF
+
+### Debug
+
+This menu is avaible only to the `Admin` role, but it is hidden by default. To show it, change the `Debug` setting to `ON`.
+
+In this menu you can track *all* of the notifications your server receives from paynow.
+
+This site also features sorting by all columns and filtering by the following params:
+* Statuses ( NEW, PENDING, CONFIRMED, REJECTED, ERROR, EXPIRED, ABANDONED )
+* Amount of results ( 25, 50, 75, 100, 1000 )
+* Transaction ID
+* Internal Ref
+
+Where `Internal Ref` is the ID assigned to the transaction by the plugin. 
+
+> [!WARNING]
+> When a user retries the payment, `Transaction ID` changes, but the `Internal Ref` stays the same
