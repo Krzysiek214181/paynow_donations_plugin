@@ -16,10 +16,12 @@ class AdminInit
             'sanitize_callback' => 'sanitize_text_field'
         ]);
         register_setting('paynow_donations_settings_group', 'paynow_environment', [
-            'sanitize_callback' => 'sanitize_text_field'
+            'sanitize_callback' => 'sanitize_text_field',
+            'default' => 'SANDBOX'
         ]);
         register_setting('paynow_donations_settings_group', 'paynow_debug', [
-            'sanitize_callback' => 'sanitize_text_field'
+            'sanitize_callback' => 'sanitize_text_field',
+            'default' => 'OFF'
         ]);
     }
 }
