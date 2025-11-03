@@ -20,7 +20,7 @@ class AdminDisplayHistory
         $allowed_columns = ['id','status','amount','description','user_email','user_name','user_surname','transaction_id','created_at','updated_at'];
         if (!in_array($column, $allowed_columns)) $column = 'id';
 
-        $limit = (!empty($_GET['filter_limit'])) ? intval($_GET['filet_limit']) : 25;
+        $limit = (!empty($_GET['filter_limit'])) ? intval($_GET['filter_limit']) : 25;
 
         $whereArray = self::build_where_clause();
 
