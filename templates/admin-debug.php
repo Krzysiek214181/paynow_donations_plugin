@@ -5,7 +5,7 @@ use \Src\Admin\AdminDisplayDebug;
 <div class="wrap"><h1>Debug</h1>
 
 <form method="get" style="margin-bottom: 1em;">
-    <input type="hidden" name="page" value="paynow_donations">
+    <input type="hidden" name="page" value="paynow_debug">
 
     <select style="margin-top: -5px;" name="filter_status">
         <option value="">All Statuses</option>
