@@ -4,7 +4,7 @@ use Src\Base\Activate;
 
 /*
 Plugin Name: Donation For Paynow
-Plugin Uri: https://github.com/Krzysiek214181/paynow_donations_plugin
+Plugin Uri: https://github.com/Krzysiek214181/donations_for_paynow_plugin
 Description: donations form with paynow payments, admin settings and transaction history
 Version: 1.1
 Author: Krzysztof Szklarski

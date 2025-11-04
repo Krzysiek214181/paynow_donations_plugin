@@ -1,4 +1,4 @@
-# Paynow Donations Plugin
+# Donations for Paynow Plugin
 
 The following repository is a wordpress plugin that makes receiving donation with [paynow](https://www.paynow.pl/) easy.  
 
@@ -7,7 +7,7 @@ It implemets two shortcodes ( donation form, return screen ), transaction histor
 ## Installation
 
 The plugin is not currently avaible on the Wordpress Plugins Directory, to install it:
-1. download the newest `paynow-donations.zip` file from this repository
+1. download the newest `donations_for_paynow.zip` file from this repository
 2. go to the ***Plugins*** menu on your Wordpress
 3. click the ***Add Plugin*** button
 4. click the ***Upload Plugin*** button
@@ -18,7 +18,7 @@ The plugin is not currently avaible on the Wordpress Plugins Directory, to insta
 
 To set up the plugin you have to be the owner of an active [paynow account](https://www.paynow.pl/jak-aktywowac)
 
-Simply copy the `ApiKey` and `SignatureKey` from your paynow panel into the corresponding field in the **Paynow -> Donations for Paynow Settings** menu and save them.
+Simply copy the `ApiKey` and `SignatureKey` from your paynow panel into the corresponding field in the **Donations -> Settings** menu and save them.
 
 Set the `Environment` setting to `PRODUCTION`
 
