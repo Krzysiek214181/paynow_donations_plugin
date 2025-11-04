@@ -27,7 +27,7 @@ class AdminDisplayHistory
         $whereClause = $whereArray['where'];
         $values = $whereArray['values'];
 
-        $query = $wpdb->prepare("SELECT * FROM $table_name $whereClause ORDER BY $column $order LIMIT %d", ...array_merge($values, [$limit]));
+        $query = $wpdb->prepare("SELECT (id, status, amount, description, user_email, user_name, user_surname, transaction_id, created_at, updated_at) FROM $table_name $whereClause ORDER BY $column $order LIMIT %d", ...array_merge($values, [$limit]));
 
         $results = $wpdb->get_results($query, ARRAY_A);
 

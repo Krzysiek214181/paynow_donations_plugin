@@ -10,7 +10,6 @@ class DbService
     private $table_suffix = "paynow_donations_transactions";
     private $debug_table_suffix = "paynow_donations_debug";
     
-
     public function __construct(){
         global $wpdb;
         $this->db = $wpdb;
@@ -34,6 +33,7 @@ class DbService
         id BIGINT(20) NOT NULL AUTO_INCREMENT,
         internal_ref varchar(50) NOT NULL UNIQUE,
         transaction_id varchar(16) UNIQUE,
+        t_id_closed BOOLEAN DEFAULT 0,
         amount DECIMAL(10,2) NOT NULL,
         status VARCHAR(10) NOT NULL DEFAULT 'NEW',
         description VARCHAR(255) NOT NULL,
@@ -71,7 +71,7 @@ class DbService
      *      transaction_id: string,
      *      status: string
      * }$data
-     * @return boolean
+     * @return bool
      */
     public function debugNewNotification(array $data){
         $result = $this->db->insert(
@@ -97,7 +97,7 @@ class DbService
      *       user_surname: string
      *   } $data
      *
-     *   @return boolean
+     *   @return bool
     */
     public function newPayment(array $data){
 
@@ -130,7 +130,7 @@ class DbService
      *      transaction_id: string,
      *      internal_ref: string
      * } $data
-     * @return boolean
+     * @return bool
      */
     public function addPaymentTransactionId(array $data){
         $result = $this->db->update(
@@ -160,30 +160,43 @@ class DbService
      *      new_status: string
      *   } $data
      * 
-     * @return boolean
+     * @return bool
     */
     public function updatePayment(array $data){
-        if( ! $this->verifyStatus( $data['new_status'])){
+
+        // check whether new status is an allowed status
+        if( !$this->verifyStatus( $data['new_status'])){
             return false;
         }
 
-        //don't change the status if it's already confirmed ( fix for phantom notifications send by paynow after the payment is finished )
-        if( $this->getCurrentStatus($data['internal_ref']) === 'CONFIRMED'){
+        //get current transaction_id and t_id_closedd
+        $transaction_info = $this->getTransactionInfo($data['internal_ref']);
+
+        //if the payment is already closed and the transaction_id hasn't changed, ignore the notification
+        if( $transaction_info['transaction_id'] === $data['transaction_id'] && $transaction_info['t_id_closed'] ){
             return false;
+        }
+        
+        //if transaction id has changed, update the transaction_id and set t_id_closed to 0
+        if( $transaction_info['transaction_id'] !== $data['transaction_id']){
+            $this->open_transaction_id( $data['internal_ref'], $data['transaction_id']);
+        }
+
+        //if new status is a ending status set the t_id_closed to 1
+        if($this->isEndingStatus($data['new_status'])){
+            $this->close_transaction_id($data['internal_ref']);
         }
 
         $result = $this->db->update(
             $this->table,
             [
                 'status' => $data['new_status'],
-                'transaction_id' => $data['transaction_id']
             ],
             [
                 'internal_ref' => $data['internal_ref']
             ],
             [
                 '%s',
-                '%s'
             ],
             [
                 '%s'
@@ -193,15 +206,18 @@ class DbService
         return $result !== false;
     }
 
-     /**
-     * Returns the status of the payment by internal_ref
-     * @param string $arg
-     * @return string
+    /**
+     * return the transaction_id and t_id_closed of the transaction
+     * @param string $internal_ref
+     * @return array{
+     *      transaction_id: string,
+     *      t_id_closed: bool
+     * }
      */
-    public function getCurrentStatus(string $internal_ref){
-        $query = $this->db->prepare("SELECT status from {$this->table} WHERE internal_ref = %s LIMIT 1", $internal_ref);
-        $status = $this->db->get_var($query);
-        return $status;
+    public function getTransactionInfo(string $internal_ref){
+        $query = $this->db->prepare("SELECT (transaction_id, t_id_closed) from {$this->table} WHERE internal_ref = %s LIMIT 1", $internal_ref);
+        $transaction_info = $this->db->get_row($query);
+        return $transaction_info;
     }
 
     /**
@@ -221,6 +237,76 @@ class DbService
         ];
 
         return in_array( $status, $allowed_status_array);
+    }
+
+    /**
+     * Checks whether the status is one of the transaction ending statuses
+     * @param string $status
+     * @return bool
+     */
+    private function isEndingStatus(string $status){
+        $ending_status_array = [
+            'CONFIRMED',
+            'REJECTED',
+            'ERROR',
+            'EXPIRED',
+            'ABANDONED'
+        ];
+
+        return in_array($status, $ending_status_array);
+    }
+
+    /**
+     * sets t_id_closed to 0 for the provided internal_ref, returns true/false on success/failure
+     * @param string $internal_ref
+     * @return bool
+     */
+    private function close_transaction_id(string $internal_ref){
+        $result = $this->db->update(
+            $this->table,
+            [
+                't_id_closed' => 1
+            ],
+            [
+                'internal_ref' => $internal_ref
+            ],
+            [
+                '%d'
+            ],
+            [
+                '%s'
+            ]
+        );
+
+        return $result !== false;
+    }
+
+    /**
+     * sets t_id_closed to 0 and updates the transaction_id for provided internal_ref, returns true/false on success/failure
+     * @param string $internal_ref
+     * @param string $new_transaction_id
+     * @return bool
+     */
+    private function open_transaction_id(string $internal_ref, string $new_transaction_id){
+        $result = $this->db->update(
+            $this->table,
+            [
+                't_id_closed' => 0,
+                'transaction_id' => $new_transaction_id,
+            ],
+            [
+                'internal_ref' => $internal_ref
+            ],
+            [
+                '%d',
+                '%s'
+            ],
+            [
+                '%s'
+            ]
+        );
+
+        return $result !== false;
     }
    
     /**
