@@ -10,7 +10,7 @@ use Src\Base\Activate;
 Plugin Name: Paynow Donations
 Plugin Uri: https://github.com/Krzysiek214181/paynow_donations_plugin
 Description: donations form with paynow payments, admin settings and transaction history
-Version: 1.0
+Version: 1.1
 Author: Krzysztof Szklarski
 Author Uri: https://github.com/Krzysiek214181
 Licence: GPLv2 or later

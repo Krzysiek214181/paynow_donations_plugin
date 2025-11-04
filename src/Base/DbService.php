@@ -215,7 +215,7 @@ class DbService
      * }
      */
     public function getTransactionInfo(string $internal_ref){
-        $query = $this->db->prepare("SELECT (transaction_id, t_id_closed) from {$this->table} WHERE internal_ref = %s LIMIT 1", $internal_ref);
+        $query = $this->db->prepare("SELECT transaction_id, t_id_closed from {$this->table} WHERE internal_ref = %s LIMIT 1", $internal_ref);
         $transaction_info = $this->db->get_row($query);
         return $transaction_info;
     }
