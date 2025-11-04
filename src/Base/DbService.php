@@ -173,12 +173,12 @@ class DbService
         $transaction_info = $this->getTransactionInfo($data['internal_ref']);
 
         //if the payment is already closed and the transaction_id hasn't changed, ignore the notification
-        if( $transaction_info['transaction_id'] === $data['transaction_id'] && $transaction_info['t_id_closed'] ){
+        if( $transaction_info->transaction_id === $data['transaction_id'] && $transaction_info->t_id_closed ){
             return false;
         }
         
         //if transaction id has changed, update the transaction_id and set t_id_closed to 0
-        if( $transaction_info['transaction_id'] !== $data['transaction_id']){
+        if( $transaction_info->transaction_id !== $data['transaction_id']){
             $this->open_transaction_id( $data['internal_ref'], $data['transaction_id']);
         }
 
@@ -209,10 +209,7 @@ class DbService
     /**
      * return the transaction_id and t_id_closed of the transaction
      * @param string $internal_ref
-     * @return array{
-     *      transaction_id: string,
-     *      t_id_closed: bool
-     * }
+     * 
      */
     public function getTransactionInfo(string $internal_ref){
         $query = $this->db->prepare("SELECT transaction_id, t_id_closed from {$this->table} WHERE internal_ref = %s LIMIT 1", $internal_ref);
