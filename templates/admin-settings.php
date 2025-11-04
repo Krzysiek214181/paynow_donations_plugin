@@ -23,8 +23,8 @@ $debug = get_option('paynow_debug', '');
                 <th scope="row">Environment</th>
                 <td>
                     <select id="paynow_environment" name="paynow_environment">
-                        <option value="0" <?php selected($environment, '0') ?>>SANDBOX</option>
-                        <option value="1" <?php selected($environment, '1')?>>PRODUCTION</option>
+                        <option value="0" <?php selected($environment, false) ?>>SANDBOX</option>
+                        <option value="1" <?php selected($environment, true)?>>PRODUCTION</option>
                     </select>
                 </td>
             </tr>
@@ -32,8 +32,8 @@ $debug = get_option('paynow_debug', '');
                 <th scope="row">Debug</th>
                 <td>
                     <select id="paynow_debug" name="paynow_debug">
-                        <option value="1" <?php selected($debug, '1') ?>>ON</option>
-                        <option value="0" <?php selected($debug, '0')?>>OFF</option>
+                        <option value="1" <?php selected($debug, true) ?>>ON</option>
+                        <option value="0" <?php selected($debug, false)?>>OFF</option>
                     </select>
                 </td>
             </tr>

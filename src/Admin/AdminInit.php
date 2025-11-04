@@ -17,14 +17,14 @@ class AdminInit
             'sanitize_callback' => 'sanitize_text_field'
         ]);
         register_setting('paynow_donations_settings_group', 'paynow_environment', [
-            'sanitize_callback' => 'sanitize_text_field',
+            'sanitize_callback' => 'rest_sanitize_boolean',
             'type' => 'boolean',
-            'default' => 0
+            'default' => false
         ]); // 0 - SANDBOX / 1 - PRODUCTION
         register_setting('paynow_donations_settings_group', 'paynow_debug', [
-            'sanitize_callback' => 'sanitize_text_field',
+            'sanitize_callback' => 'rest_sanitize_boolean',
             'type' => 'boolean',
-            'default' => 0
+            'default' => false
         ]); // 0 - OFF / 1 - ON
     }
 
