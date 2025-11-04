@@ -10,18 +10,18 @@ class AdminInit
     }
 
     public function register_settings(){
-        register_setting('paynow_donations_settings_group', 'paynow_apiKey', [
+        register_setting('donations_for_paynow_settings_group', 'donations_for_paynow_apiKey', [
             'sanitize_callback' => 'sanitize_text_field'
         ]);
-        register_setting('paynow_donations_settings_group', 'paynow_signatureKey', [
+        register_setting('donations_for_paynow_settings_group', 'donations_for_paynow_signatureKey', [
             'sanitize_callback' => 'sanitize_text_field'
         ]);
-        register_setting('paynow_donations_settings_group', 'paynow_environment', [
+        register_setting('donations_for_paynow_settings_group', 'donations_for_paynow_environment', [
             'sanitize_callback' => 'rest_sanitize_boolean',
             'type' => 'boolean',
             'default' => false
         ]); // 0 - SANDBOX / 1 - PRODUCTION
-        register_setting('paynow_donations_settings_group', 'paynow_debug', [
+        register_setting('donations_for_paynow_settings_group', 'donations_for_paynow_debug', [
             'sanitize_callback' => 'rest_sanitize_boolean',
             'type' => 'boolean',
             'default' => false

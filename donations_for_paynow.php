@@ -2,12 +2,8 @@
 
 use Src\Base\Activate;
 
-/**
-*   @package PaynowDonations
-*/
-
 /*
-Plugin Name: Paynow Donations
+Plugin Name: Donation For Paynow
 Plugin Uri: https://github.com/Krzysiek214181/paynow_donations_plugin
 Description: donations form with paynow payments, admin settings and transaction history
 Version: 1.1
@@ -17,7 +13,7 @@ Licence: GPLv2 or later
 */
 
 /*
-Paynow Donations Plugin
+Donations For Paynow Plugin
 Copyright (C) 2025 Krzysztof Szklarski
 
 This program is free software; you can redistribute it and/or
@@ -45,8 +41,8 @@ if( class_exists('Src\\Init')){
     Src\Init::register_services();
 }
 
-function activate_paynow_donations_plugin(){
+function activate_donations_for_paynow_plugin(){
     Activate::activate();
 }
 
-register_activation_hook( __FILE__ , 'activate_paynow_donations_plugin');
+register_activation_hook( __FILE__ , 'activate_donations_for_paynow_plugin');

@@ -2,25 +2,25 @@
     box-sizing: border-box;
 }
 
-.paynow-donation-form{
+.donations-for-paynow-form{
     display: flex;
     flex-direction: column;
     gap: 16px;
     align-items: center;
 }
 
-.paynow-donation-form input{
+.donations-for-paynow-form input{
     border-radius: 8px;
     font-size: 16px;
     padding: 8px 16px;
 }
 
-.paynow-donation-form label{
+.donations-for-paynow-form label{
     font-size: 16px;
 
 }
 
-.paynow-donation-form button{
+.donations-for-paynow-form button{
     width: 100%;
     font-size: 24px;
     padding: 16px 24px;
@@ -28,17 +28,17 @@
     font-weight: 700;
 }
 
-.paynow-donation-form-fieldset{
+.donations-for-paynow-form-fieldset{
     width: 100%;
     
 }
 
-#paynow_return_main_div{
+#donations_for_paynow_return_main_div{
     text-align: center;
     width: 100dvw;
 }
 
-.paynowDonationsReturnButton{
+.donationsforPaynowReturnButton{
     font-size: 24px;
     padding: 8px 16px;
 }

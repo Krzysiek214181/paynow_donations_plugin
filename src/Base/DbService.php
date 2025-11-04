@@ -7,8 +7,8 @@ class DbService
     private $db;
     private $table;
     private $debug_table;
-    private $table_suffix = "paynow_donations_transactions";
-    private $debug_table_suffix = "paynow_donations_debug";
+    private $table_suffix = "donations_for_paynow";
+    private $debug_table_suffix = "donations_for_paynow_debug";
     
     public function __construct(){
         global $wpdb;
@@ -18,7 +18,7 @@ class DbService
     }
 
     /**
-     * creates required wp_paynow_donations_transactions table and wp_paynow_donations_debug table
+     * creates required wp_donations_for_paynow table and wp_donations_for_paynow_debug table
      * @return void
      */
     public function register(){

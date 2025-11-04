@@ -10,7 +10,7 @@ class AdminPages extends BaseController
         // add history subpage ( same as main page ) for better menu title
         $this->add_subpage(
         [
-            'page_title' => 'Paynow History', 
+            'page_title' => 'Donations for Paynow History', 
             'menu_title' => 'History', 
             'callback' => [$this, 'admin_history'], 
             'capabilities' => 'edit_others_posts'
@@ -18,20 +18,20 @@ class AdminPages extends BaseController
         // add settings subpage
         $this->add_subpage( 
         [
-            'page_title' => 'Paynow Settings', 
+            'page_title' => 'Donations for Paynow Settings', 
             'menu_title' => 'Settings', 
-            'menu_slug' => 'paynow_settings', 
+            'menu_slug' => 'donations_for_paynow_settings', 
             'callback' => [$this, 'admin_settings'], 
             'capabilities' => 'edit_others_posts'
         ]);
 
         // if debug is on, add debug subpage
-        if(get_option('paynow_debug')){
+        if(get_option('donations_for_paynow_debug')){
             $this->add_subpage(
             [
-                'page_title' => 'Paynow Debug', 
+                'page_title' => 'Donations for Paynow Debug', 
                 'menu_title' => 'Debug', 
-                'menu_slug' => 'paynow_debug', 
+                'menu_slug' => 'donations_for_paynow_debug', 
                 'callback' => [$this, 'admin_debug']]);
         }
 
@@ -40,7 +40,7 @@ class AdminPages extends BaseController
 
     public function add_admin_pages(){
         //add main admin page ( history page )
-        add_menu_page('Paynow History', 'Paynow', 'edit_others_posts', 'paynow_donations', [$this, 'admin_history'], 'dashicons-money-alt', 100);
+        add_menu_page('Donations for Paynow History', 'Donations', 'edit_others_posts', 'donations_for_paynow', [$this, 'admin_history'], 'dashicons-money-alt', 100);
 
         //add all subpages defined using add_subpage() function
         foreach(self::$adminSubPages as $page){
@@ -62,11 +62,11 @@ class AdminPages extends BaseController
      */
     public function add_subpage(array $args){
         $defaults = [
-            'parent_slug' => 'paynow_donations',
-            'page_title' => 'Paynow Title',
+            'parent_slug' => 'donations_for_paynow',
+            'page_title' => 'Donations for Paynow Title',
             'menu_title' => 'Title',
             'capabilites' => 'manage_options',
-            'menu_slug' => 'paynow_donations',
+            'menu_slug' => 'donations_for_paynow',
             'callback' => function() {echo "set callback in add_subpage";}
         ];
 

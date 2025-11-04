@@ -9,17 +9,18 @@ if( !defined('WP_UNINSTALL_PLUGIN')){
 }
 
 //delete paynow keys
-delete_option('paynow_apiKey');
-delete_option('paynow_signatureKey');
-delete_option('paynow_environment');
+delete_option('donations_for_paynow_apiKey');
+delete_option('donations_for_paynow_signatureKey');
+delete_option('donations_for_paynow_environment');
+delete_option('donations_for_paynow_debug');
 
 //delete options group
-delete_option('paynow_donations_settings_group');
+delete_option('donations_for_paynow_settings_group');
 
 //drop table
 global $wpdb;
 
-$table_name = $wpdb->prefix . 'paynow_donations_transactions';
-$debug_table_name = $wpdb->prefix .'paynow_donations_debug';
+$table_name = $wpdb->prefix . 'donations_for_paynow';
+$debug_table_name = $wpdb->prefix .'donations_for_paynow_debug';
 $wpdb->query("DROP TABLE IF EXISTS $table_name");
 $wpdb->query("DROP TABLE IF EXISTS $debug_table_name");

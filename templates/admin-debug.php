@@ -5,7 +5,7 @@ use \Src\Admin\AdminDisplayDebug;
 <div class="wrap"><h1>Debug</h1>
 
 <form method="get" style="margin-bottom: 1em;">
-    <input type="hidden" name="page" value="paynow_debug">
+    <input type="hidden" name="page" value="donations_for_paynow_debug">
 
     <select style="margin-top: -5px;" name="filter_status">
         <option value="">All Statuses</option>
@@ -29,7 +29,7 @@ use \Src\Admin\AdminDisplayDebug;
     <input type="text" name="filter_transaction_id" placeholder="transaction id" value="<?php echo esc_attr($_GET['filter_transaction_id'] ?? ''); ?>">
     <input type="text" name="filter_internal_ref" placeholder="internal_ref" value="<?php echo esc_attr($_GET['filter_internal_ref'] ?? ''); ?>">
 
-    <a href="<?php echo admin_url('admin.php?page=paynow_debug'); ?>" class="button">Clear</a>
+    <a href="<?php echo admin_url('admin.php?page=donations_for_paynow_debug'); ?>" class="button">Clear</a>
     <button type="submit" class="button">Filter</button>
 </form>
 

@@ -1,6 +1,6 @@
 <?php return array(
     'root' => array(
-        'name' => 'kszkl/paynow_donations',
+        'name' => 'kszkl/donations_for_paynow',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
         'reference' => '29ba29548a14554bd04cc48768b48341f5ced37d',
@@ -19,7 +19,7 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'kszkl/paynow_donations' => array(
+        'kszkl/donations_for_paynow' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
             'reference' => '29ba29548a14554bd04cc48768b48341f5ced37d',

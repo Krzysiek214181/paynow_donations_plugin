@@ -1,5 +1,5 @@
 {
-    "name": "kszkl/paynow_donations",
+    "name": "kszkl/donations_for_paynow",
     "description": "donations form with paynow payments, admin settings and transaction history",
     "type": "plugin",
     "require": {

@@ -18,15 +18,15 @@ The plugin is not currently avaible on the Wordpress Plugins Directory, to insta
 
 To set up the plugin you have to be the owner of an active [paynow account](https://www.paynow.pl/jak-aktywowac)
 
-Simply copy the `ApiKey` and `SignatureKey` from your paynow panel into the corresponding field in the **Paynow -> Paynow Settings** menu and save them.
+Simply copy the `ApiKey` and `SignatureKey` from your paynow panel into the corresponding field in the **Paynow -> Donations for Paynow Settings** menu and save them.
 
 Set the `Environment` setting to `PRODUCTION`
 
 In your paynow panel set up the correct `Shop Domain`  
 
-Set the `Notifications URL` to `https://yourdomain.example/wp-json/paynownotifications/notify`
+Set the `Notifications URL` to `https://yourdomain.example/wp-json/donationsforpaynow/notify`
 
-Set the `Return address` to a site where you'll use the `[paynow_return]` shortcode
+Set the `Return address` to a site where you'll use the `[donations_for_paynow_return]` shortcode
 
 ## Testing
 
@@ -41,7 +41,7 @@ Make sure to also change the `Environment` setting to `SANDBOX`
 
 As mentioned before, the plugin implements *two* shortcodes
 
-### [paynow_donation_form]
+### [donations_for_paynow_form]
 
 This shorcodes generates a custom form that enables your site's visitors to make easy donations.
 
@@ -67,10 +67,10 @@ button_text | Donate | The main text display on the button
 #### full shortcode
 
 ```
-[ paynow_donation_form main_text="Donate Here" user_legend="Donor Information" payment_legend="Payment Information" name_label="Name" name_placeholder="Full Name" surname_label="Surname" surname_placeholder="Surname" email_label="Email" email_placeholder="Email Address" description_label="Description" description_placeholder="Payment Description" amount_label="Amount" amount_placeholder="Amount" button_text="Donate" ]
+[ donations_for_paynow_form main_text="Donate Here" user_legend="Donor Information" payment_legend="Payment Information" name_label="Name" name_placeholder="Full Name" surname_label="Surname" surname_placeholder="Surname" email_label="Email" email_placeholder="Email Address" description_label="Description" description_placeholder="Payment Description" amount_label="Amount" amount_placeholder="Amount" button_text="Donate" ]
 ```
 
-### [paynow_return]
+### [donations_for_paynow_return]
 
 This shortcode generates a dynamic message for the user returning after completing a payment.
 
@@ -88,7 +88,7 @@ transaction_id | Your transaction ID is | The message after which the Transactio
 #### full shortcode
 
 ```
-[ paynow_return button_text="Main Page" button_url=" success_msg="Thank you for your contribution" fail_msg="Something went wrong with your payment" show_id=true transaction_id_ms="Your transaction ID is" ]
+[ donations_for_paynow_return button_text="Main Page" button_url=" success_msg="Thank you for your contribution" fail_msg="Something went wrong with your payment" show_id=true transaction_id_ms="Your transaction ID is" ]
 ```
 
 ## Admin Pages

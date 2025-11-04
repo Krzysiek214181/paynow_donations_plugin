@@ -5,7 +5,7 @@ namespace Src\Base;
 class PaymentReturnShorcode
 {
     public static function register(){
-        add_shortcode("paynow_return", [self::class, 'render']);
+        add_shortcode("donations_for_paynow_return", [self::class, 'render']);
     }
 
     public static function render($atts){
@@ -37,17 +37,17 @@ class PaymentReturnShorcode
         ob_start();
         ?>
 
-        <div id="paynow_return_main_div">
-            <h1 id="paynow_return_main_message">
+        <div id="donations_for_paynow_return_main_div">
+            <h1 id="donations_for_paynow_return_main_message">
                 <?php echo esc_html($message)?>
             </h1>
 
-            <p id="paynow_return_transaction_id">
+            <p id="donations_for_paynow_return_transaction_id">
                 <?php echo $transacionIdMessage?>
             </p>
 
             <a href="<?php echo esc_html($atts['button_url'])?>">
-                <button class="paynowDonationsReturnButton">
+                <button class="donationsforPaynowReturnButton">
                     <?php echo esc_html($atts['button_text'])?>
                 </button>
             </a>

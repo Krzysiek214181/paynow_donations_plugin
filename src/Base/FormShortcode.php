@@ -5,7 +5,7 @@ namespace Src\Base;
 class FormShortcode
 {
     public static function register(){
-        add_shortcode("paynow_donation_form", [self::class, 'renderForm']);
+        add_shortcode("donations_for_paynow_form", [self::class, 'renderForm']);
     }
 
     public static function renderForm($atts = [], $content = null){
@@ -29,12 +29,12 @@ class FormShortcode
         ob_start();
         ?>
 
-        <form method="post" action="<?php echo esc_url(admin_url('admin-post.php'));?>" class="paynow-donation-form">
-            <?php wp_nonce_field('paynow-donation-form', 'paynow_nonce')?>
-            <input type="hidden" name="action" value="paynow_submit_donation">
+        <form method="post" action="<?php echo esc_url(admin_url('admin-post.php'));?>" class="donations-for-paynow-form">
+            <?php wp_nonce_field('donations-for-paynow-form', 'donations_for_paynow_nonce')?>
+            <input type="hidden" name="action" value="donations_for_paynow_submit_donation">
 
             <h1><?php echo esc_html($atts['main_text'])?></h1>
-            <fieldset class="paynow-donation-form-fieldset">
+            <fieldset class="donations-for-paynow-form-fieldset">
                 <legend><?php echo esc_html($atts['user_legend'])?></legend>
 
                 <span style="display: flex; width: 100%; gap:26px;">
@@ -46,7 +46,7 @@ class FormShortcode
                         <input 
                             style="width:100%;" 
                             type="text" 
-                            name="paynow_name"  
+                            name="donations_for_paynow_name"  
                             placeholder="<?php echo esc_html($atts['name_placeholder'])?>" 
                             required
                         >
@@ -60,7 +60,7 @@ class FormShortcode
                         <input 
                             style="width:100%;" 
                             type="text" 
-                            name="paynow_surname" 
+                            name="donations_for_paynow_surname" 
                             placeholder="<?php echo esc_html($atts['surname_placeholder'])?>" 
                             required
                         >
@@ -75,7 +75,7 @@ class FormShortcode
                     <input 
                         style="width:100%;"
                         type="email" 
-                        name="paynow_email" 
+                        name="donations_for_paynow_email" 
                         pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" 
                         title="Please enter a valid email address like example@domain.com" 
                         placeholder="<?php echo esc_html($atts['email_placeholder'])?>" 
@@ -84,7 +84,7 @@ class FormShortcode
                 </p>
             </fieldset>
             
-            <fieldset class="paynow-donation-form-fieldset">
+            <fieldset class="donations-for-paynow-form-fieldset">
                 <legend><?php echo esc_html($atts['payment_legend'])?></legend>
                 
                 <p>
@@ -95,7 +95,7 @@ class FormShortcode
                     <input 
                         style="width:100%;" 
                         type="text" 
-                        name="paynow_description" 
+                        name="donations_for_paynow_description" 
                         placeholder="<?php echo esc_html($atts['description_placeholder'])?>" 
                         required
                     >
@@ -109,7 +109,7 @@ class FormShortcode
                     <input 
                         style="width:100%" 
                         type="number" 
-                        name="paynow_amount" 
+                        name="donations_for_paynow_amount" 
                         step="0.01" 
                         min="1" 
                         max="1000000" 

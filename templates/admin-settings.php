@@ -1,28 +1,28 @@
 <?php
-$apiKey = get_option('paynow_apiKey', '');
-$signatureKey = get_option('paynow_signatureKey', '');
-$environment = get_option('paynow_environment', '');
-$debug = get_option('paynow_debug', '');
+$apiKey = get_option('donations_for_paynow_apiKey', '');
+$signatureKey = get_option('donations_for_paynow_signatureKey', '');
+$environment = get_option('donations_for_paynow_environment', '');
+$debug = get_option('donations_for_paynow_debug', '');
 ?>
 
 <div class="wrap">
-    <h1>Paynow Settings</h1>
+    <h1>Donations for Paynow Settings</h1>
     <?php settings_errors(); ?>
     <form method="post" action="options.php">
-        <?php settings_fields('paynow_donations_settings_group'); ?>
+        <?php settings_fields('donations_for_paynow_settings_group'); ?>
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">API Key</th>
-                <td><input id="paynow_apiKey" type="password" name="paynow_apiKey" value="<?php echo esc_attr($apiKey); ?>" class="regular-text" style="margin-right: 8px" /><button type="button" class="button toggle-password" data-target="paynow_apiKey">Show</button></td>
+                <td><input id="donations_for_paynow_apiKey" type="password" name="donations_for_paynow_apiKey" value="<?php echo esc_attr($apiKey); ?>" class="regular-text" style="margin-right: 8px" /><button type="button" class="button toggle-password" data-target="donations_for_paynow_apiKey">Show</button></td>
             </tr>
             <tr valign="top">
                 <th scope="row">Signature Key</th>
-                <td><input id="paynow_signatureKey" type="password" name="paynow_signatureKey" value="<?php echo esc_attr($signatureKey); ?>" class="regular-text" style="margin-right: 8px" /><button type="button" class="button toggle-password" data-target="paynow_signatureKey">Show</button></td>
+                <td><input id="donations_for_paynow_signatureKey" type="password" name="donations_for_paynow_signatureKey" value="<?php echo esc_attr($signatureKey); ?>" class="regular-text" style="margin-right: 8px" /><button type="button" class="button toggle-password" data-target="donations_for_paynow_signatureKey">Show</button></td>
             </tr>
             <tr valing="top">
                 <th scope="row">Environment</th>
                 <td>
-                    <select id="paynow_environment" name="paynow_environment">
+                    <select id="donations_for_paynow_environment" name="donations_for_paynow_environment">
                         <option value="0" <?php selected($environment, false) ?>>SANDBOX</option>
                         <option value="1" <?php selected($environment, true)?>>PRODUCTION</option>
                     </select>
@@ -31,7 +31,7 @@ $debug = get_option('paynow_debug', '');
             <tr valing="top">
                 <th scope="row">Debug</th>
                 <td>
-                    <select id="paynow_debug" name="paynow_debug">
+                    <select id="donations_for_paynow_debug" name="donations_for_paynow_debug">
                         <option value="1" <?php selected($debug, true) ?>>ON</option>
                         <option value="0" <?php selected($debug, false)?>>OFF</option>
                     </select>

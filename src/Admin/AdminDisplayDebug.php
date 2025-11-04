@@ -13,7 +13,7 @@ class AdminDisplayDebug
      */
     public static function render_page($column, $desc) {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'paynow_donations_debug';
+        $table_name = $wpdb->prefix . 'donations_for_paynow_debug';
         
         $order = $desc ? 'DESC' : 'ASC';
 
@@ -31,7 +31,7 @@ class AdminDisplayDebug
 
         $results = $wpdb->get_results($query, ARRAY_A);
 
-        echo '<table class="widefat paynowDonationsTable" cellspacing="0">';
+        echo '<table class="widefat donationsForPaynowTable" cellspacing="0">';
         echo '<thead><tr>
             <th>ID' . self::create_sort_button('id') . '</th>
             <th>Status' . self::create_sort_button('status') . '</th>

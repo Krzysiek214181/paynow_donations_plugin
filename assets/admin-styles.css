@@ -29,7 +29,7 @@
     color: #3a3f4f;
 }
 
-.paynowDonationsTable tr:nth-child(even) {
+.donationsForPaynowTable tr:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.1);
     filter: brightness(95%);
 }
@@ -39,7 +39,7 @@
     margin-right: 0;
 }
 
-.paynowDonationsTable th:has(.currentSortButton) {
+.donationsForPaynowTable th:has(.currentSortButton) {
     background-color: rgba(0, 0, 0, 0.15);
     box-shadow: inset 0 -3px 0 #0073aa;
 }

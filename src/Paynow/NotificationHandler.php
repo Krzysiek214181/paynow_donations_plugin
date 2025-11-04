@@ -15,14 +15,14 @@ class NotificationHandler
 
     public function __construct(){
         $this->dbService = new DbService();
-        $this->signatureKey = get_option('paynow_signatureKey');
+        $this->signatureKey = get_option('donations_for_paynow_signatureKey');
     }
 
     public function register(){
         add_action('rest_api_init', function() {
-            register_rest_route('paynowdonations', '/notify', [
+            register_rest_route('donationsforpaynow', '/notify', [
                 'methods' => 'POST',
-                'callback' => [$this, 'paynow_handle_notification'],
+                'callback' => [$this, 'donations_for_paynow_handle_notification'],
                 'permission_callback' => '__return_true'
             ]);
         });
@@ -33,7 +33,7 @@ class NotificationHandler
      * @param \WP_REST_Request $request
      * @return WP_REST_Response
      */
-    public function paynow_handle_notification(WP_REST_Request $request) {
+    public function donations_for_paynow_handle_notification(WP_REST_Request $request) {
         $payload = $request->get_body();
         $headers = $request->get_headers();
         $normalizedHeaders = [];
@@ -42,7 +42,7 @@ class NotificationHandler
         }
 
         if(empty($payload)){
-            error_log('[paynow_donations] received empty notification');
+            error_log('[donations_for_paynow] received empty notification');
             return new WP_REST_Response(null, 400);
         }
     

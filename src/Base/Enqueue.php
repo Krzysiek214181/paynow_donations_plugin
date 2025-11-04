@@ -12,14 +12,14 @@ class Enqueue extends BaseController
 
     public function enqueue_public_styles(){
         wp_enqueue_style(
-            'paynow_donations_styles',
+            'donations_for_paynow_styles',
             $this->plugin_url .  'assets/public-styles.css'
         );
     }
 
     public function enqueue_admin_styles(){
         wp_enqueue_style(
-            'paynow_donations_styles',
+            'donations_for_paynow_styles',
             $this->plugin_url .  'assets/admin-styles.css'
         );
     }
