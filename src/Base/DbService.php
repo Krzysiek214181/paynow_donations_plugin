@@ -199,7 +199,7 @@ class DbService
      * @return string
      */
     public function getCurrentStatus(string $internal_ref){
-        $query = $this->db->prepare("SELECT status from {$this->table} WHERE interlan_ref = %s LIMIT 1". $internal_ref);
+        $query = $this->db->prepare("SELECT status from {$this->table} WHERE internal_ref = %s LIMIT 1", $internal_ref);
         $status = $this->db->get_var($query);
         return $status;
     }
