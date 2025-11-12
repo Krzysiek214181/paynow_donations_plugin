@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Base;
+namespace Kszkl\Donations\Base;
 
 class BaseController 
 {

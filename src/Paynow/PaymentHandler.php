@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Paynow;
+namespace Kszkl\Donations\Paynow;
 
-use Src\Base\DbService;
+use Kszkl\Donations\Base\DbService;
 use Paynow\Client;
 use Paynow\Environment;
 use Paynow\Exception\PaynowException;
@@ -36,7 +36,7 @@ class PaymentHandler
      */
     public function registerNewPayment($data){
 
-        $errorMessage = "We couldn't process your payment at the moment";
+        $errorMessage = esc_html("We couldn't process your payment at the moment");
         $internal_ref = Uuid::uuid4()->toString();
 
         $newPaymentResult = $this->dbService->newPayment([

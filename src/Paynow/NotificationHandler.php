@@ -1,10 +1,10 @@
 <?php
 
-namespace Src\Paynow;
+namespace Kszkl\Donations\Paynow;
 
 use Exception;
 use Paynow\Notification;
-use Src\Base\DbService;
+use Kszkl\Donations\Base\DbService;
 use WP_REST_Response;
 use WP_REST_Request;
 

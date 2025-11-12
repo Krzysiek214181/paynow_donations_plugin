@@ -1,4 +1,4 @@
-# Donations for Paynow Plugin
+# Kszkl\Donations for Paynow Plugin
 
 The following repository is a wordpress plugin that makes receiving donation with [paynow](https://www.paynow.pl/) easy.  
 
@@ -18,7 +18,7 @@ The plugin is not currently avaible on the Wordpress Plugins Directory, to insta
 
 To set up the plugin you have to be the owner of an active [paynow account](https://www.paynow.pl/jak-aktywowac)
 
-Simply copy the `ApiKey` and `SignatureKey` from your paynow panel into the corresponding field in the **Donations -> Settings** menu and save them.
+Simply copy the `ApiKey` and `SignatureKey` from your paynow panel into the corresponding field in the **Kszkl\Donations -> Settings** menu and save them.
 
 Set the `Environment` setting to `PRODUCTION`
 
@@ -49,7 +49,6 @@ This shorcodes generates a custom form that enables your site's visitors to make
 
 attribute name | default value | explanation
 --- | --- | ---
-main_text | Donate Here | main text displayed above the form
 user_legend | Donate Information | the text displayed as a legend to the users info part of the form
 payment_legend | Payment Information | the text displayed as a legend to the users info part of the form
 name_label | Name | The text display next to the name field
@@ -63,11 +62,15 @@ description_placeholder | Payment Description | The placeholder inside the descr
 amount_label | Amount | The text displayed next to the amount field
 amount_placeholder | Amount | The placeholder inside the description field
 button_text | Donate | The main text display on the button
+sug_amount_1 | 10 | The value of the first suggested amount button
+sug_amount_2 | 25 | The value of the second suggested amount button
+sug_amount_3 | 50 | The value of the third suggested amount button
+sug_amount_4 | 100 | The value of the fourth suggested amount button
 
 #### full shortcode
 
 ```
-[ donations_for_paynow_form main_text="Donate Here" user_legend="Donor Information" payment_legend="Payment Information" name_label="Name" name_placeholder="Full Name" surname_label="Surname" surname_placeholder="Surname" email_label="Email" email_placeholder="Email Address" description_label="Description" description_placeholder="Payment Description" amount_label="Amount" amount_placeholder="Amount" button_text="Donate" ]
+[ donations_for_paynow_form user_legend="Donor Information" payment_legend="Payment Information" name_label="Name" name_placeholder="Full Name" surname_label="Surname" surname_placeholder="Surname" email_label="Email" email_placeholder="Email Address" description_label="Description" description_placeholder="Payment Description" amount_label="Amount" amount_placeholder="Amount" button_text="Donate" sug_amount_1="10" sug_amount_2="25" sug_amount_3="50" sug_amount_4="100"]
 ```
 
 ### [donations_for_paynow_return]
@@ -79,16 +82,15 @@ This shortcode generates a dynamic message for the user returning after completi
 attribute name | default value | explanation
 --- | --- | ---
 button_text | Main Page | Text displayed on the button
-button_url | N/A | The url the button points to
+button_url | home_url() | The url the button points to
 success_msg | Thank you for your contribution | The main message displayed after succesfull payment
 fail_msg | Something went wrong with your payment | The main message displayed after an unsuccesfull payment
-show_id | true | True/False whether to show the Transaction ID to the user
-transaction_id | Your transaction ID is | The message after which the Transaction ID is displayed ( if show_id is true )
+sub_msg | A message with details has been sent to your email | This message is displayed under fail / success msg
 
 #### full shortcode
 
 ```
-[ donations_for_paynow_return button_text="Main Page" button_url=" success_msg="Thank you for your contribution" fail_msg="Something went wrong with your payment" show_id=true transaction_id_ms="Your transaction ID is" ]
+[ donations_for_paynow_return button_text="Main Page" success_msg="Thank you for your contribution" fail_msg="Something went wrong with your payment" sub_msg="A message with details has been sent to your email" ]
 ```
 
 ## Admin Pages

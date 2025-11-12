@@ -1,4 +1,4 @@
-=== Donations for Paynow ===
+=== Kszkl\Donations for Paynow ===
 Contributors: kszklarski
 License: GPLv2
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html

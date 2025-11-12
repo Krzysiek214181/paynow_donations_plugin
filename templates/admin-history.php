@@ -1,5 +1,5 @@
 <?php 
-use \Src\Admin\AdminDisplayHistory;
+use \Kszkl\Donations\Admin\AdminDisplayHistory;
 ?>
 
 <div class="wrap"><h1>Transaction History</h1>

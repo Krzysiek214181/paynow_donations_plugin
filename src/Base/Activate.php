@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Base;
+namespace Kszkl\Donations\Base;
 
-use Src\Base\DbService;
+use Kszkl\Donations\Base\DbService;
 
 class Activate
 {

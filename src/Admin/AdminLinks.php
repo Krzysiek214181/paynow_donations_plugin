@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Admin;
+namespace Kszkl\Donations\Admin;
 
-use Src\Base\BaseController;
+use Kszkl\Donations\Base\BaseController;
 
 class AdminLinks extends BaseController
 {

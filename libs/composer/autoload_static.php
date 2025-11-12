@@ -19,7 +19,6 @@ class ComposerStaticInitce00363266df83feeefed24c9e79bfa8
             'Symfony\\Contracts\\Service\\' => 26,
             'Symfony\\Contracts\\HttpClient\\' => 29,
             'Symfony\\Component\\HttpClient\\' => 29,
-            'Src\\' => 4,
         ),
         'R' => 
         array (
@@ -38,6 +37,10 @@ class ComposerStaticInitce00363266df83feeefed24c9e79bfa8
         'N' => 
         array (
             'Nyholm\\Psr7\\' => 12,
+        ),
+        'K' => 
+        array (
+            'Kszkl\\Donations\\' => 16,
         ),
         'H' => 
         array (
@@ -67,10 +70,6 @@ class ComposerStaticInitce00363266df83feeefed24c9e79bfa8
         'Symfony\\Component\\HttpClient\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-client',
-        ),
-        'Src\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -108,6 +107,10 @@ class ComposerStaticInitce00363266df83feeefed24c9e79bfa8
         'Nyholm\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/nyholm/psr7/src',
+        ),
+        'Kszkl\\Donations\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Http\\Promise\\' => 
         array (

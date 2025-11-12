@@ -1,6 +1,6 @@
 <?php
 
-namespace Src;
+namespace Kszkl\Donations;
 
 class Init
 {
@@ -14,7 +14,7 @@ class Init
             Admin\AdminLinks::class, // create the settings and history links on plugin page
             Admin\AdminInit::class, // register custom settings
             Base\FormShortcode::class, // create the donation form shorcode [donations_for_paynow_form]
-            Base\PaymentReturnShorcode::class, // create the custom return screen shortcode [donations_for_paynow_return]
+            Base\PaymentReturnShortcode::class, // create the custom return screen shortcode [donations_for_paynow_return]
             Base\Enqueue::class, // enqueue css files
             Paynow\FormHandler::class, // handle form submission
             Paynow\NotificationHandler::class, // handle incoming paynow notifications

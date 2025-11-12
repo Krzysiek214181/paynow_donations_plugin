@@ -1,5 +1,5 @@
 <?php 
-use \Src\Admin\AdminDisplayDebug;
+use \Kszkl\Donations\Admin\AdminDisplayDebug;
 ?>
 
 <div class="wrap"><h1>Debug</h1>

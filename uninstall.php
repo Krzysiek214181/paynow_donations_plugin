@@ -1,7 +1,7 @@
 <?php
 
 /**
-*   @package PaynowDonations
+*   @package PaynowKszkl\Donations
 */
 
 if( !defined('WP_UNINSTALL_PLUGIN')){

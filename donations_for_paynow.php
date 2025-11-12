@@ -1,12 +1,12 @@
 <?php
 
-use Src\Base\Activate;
+use Kszkl\Donations\Base\Activate;
 
 /*
-Plugin Name: Donation For Paynow
+Plugin Name: Donations For Paynow
 Plugin Uri: https://github.com/Krzysiek214181/donations_for_paynow_plugin
 Description: donations form with paynow payments, admin settings and transaction history
-Version: 1.1
+Version: 1.2
 Author: Krzysztof Szklarski
 Author Uri: https://github.com/Krzysiek214181
 Licence: GPLv2 or later
@@ -37,8 +37,8 @@ if ( file_exists(dirname(__FILE__) . '/libs/autoload.php')){
     require_once dirname(__FILE__) . '/libs/autoload.php';
 }
 
-if( class_exists('Src\\Init')){
-    Src\Init::register_services();
+if( class_exists('Kszkl\Donations\\Init')){
+    Kszkl\Donations\Init::register_services();
 }
 
 function activate_donations_for_paynow_plugin(){

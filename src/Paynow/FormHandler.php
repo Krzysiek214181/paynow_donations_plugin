@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Paynow;
+namespace Kszkl\Donations\Paynow;
 
-use Src\Paynow\PaymentHandler;
+use Kszkl\Donations\Paynow\PaymentHandler;
 
 class FormHandler
 {

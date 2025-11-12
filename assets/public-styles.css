@@ -1,44 +1,260 @@
-*{
+.donation-for-paynow-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
     box-sizing: border-box;
 }
 
-.donations-for-paynow-form{
+.donations-for-paynow-form {
+    background: #fff;
+    border-radius: 18px;
+    padding: 45px 50px;
+    max-width: 520px;
+    width: 100%;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
+    gap: 30px;
+}
+
+.donations-for-paynow-form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.donations-for-paynow-form legend {
+    font-weight: 600;
+    color: #383278;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.donations-for-paynow-form-row {
+    display: flex;
     gap: 16px;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
-.donations-for-paynow-form input{
-    border-radius: 8px;
-    font-size: 16px;
-    padding: 8px 16px;
+.donations-for-paynow-form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-.donations-for-paynow-form label{
-    font-size: 16px;
-
+.donations-for-paynow-form-group label {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: #555;
 }
 
-.donations-for-paynow-form button{
-    width: 100%;
-    font-size: 24px;
-    padding: 16px 24px;
-    border-radius: 16px;
-    font-weight: 700;
+.donations-for-paynow-form-group input {
+    padding: 11px 14px;
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
 }
 
-.donations-for-paynow-form-fieldset{
-    width: 100%;
-    
+.donations-for-paynow-form-submit-btn {
+  background-color: transparent;
+  color: #383278;
+  border: 2px solid #383278;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 1.05rem;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
 }
 
-#donations_for_paynow_return_main_div{
-    text-align: center;
-    width: 100dvw;
+.donations-for-paynow-form-submit-btn:hover {
+  background-color: #383278;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(56, 50, 120, 0.2);
 }
 
-.donationsforPaynowReturnButton{
-    font-size: 24px;
-    padding: 8px 16px;
+.donations-for-paynow-form fieldset + fieldset {
+  border-top: 1px solid #eee;
+  padding-top: 22px;
 }
+
+.donations-for-paynow-form-suggested-amounts {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  gap: 8px;
+}
+
+.donations-for-paynow-form-suggested-amount {
+  flex: 1;
+  padding: 10px 0;
+  border: 1px solid #383278;
+  background: transparent;
+  color: #383278;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.donations-for-paynow-form-suggested-amount:hover,
+.donations-for-paynow-form-suggested-amount.active {
+  background: #383278;
+  color: #fff;
+}
+
+.donations-for-paynow-amount-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.donations-for-paynow-amount-input-wrapper input {
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 40px; /* make space for zł */
+}
+
+.donations-for-paynow-currency-label {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.donations-for-paynow-form-group input:focus {
+    border-color: #383278;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(56, 50, 120, 0.08);
+    outline: none;
+}
+
+.donations-for-paynow-return-wrapper{
+    border-radius: 37px; 
+    display: flex; 
+    align-self: center; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    height: fit-content; 
+    background: #ffffff; 
+    font-family: 'Poppins', sans-serif; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    width: fit-content; 
+    margin: auto; 
+    margin-top: 100px; 
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.08), 
+      0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.donations-for-paynow-return-button{
+    display: inline-block; 
+    margin-bottom: 25px; 
+    padding: 12px 28px; 
+    background-color: #ffffff; 
+    color: #383278; 
+    border: 2px solid;
+    border-radius: 30px; 
+    text-decoration: none; 
+    font-weight: 300; 
+    transition: background-color 0.3s;
+}
+
+.donations-for-paynow-return-button:hover{
+    background-color: #383278;
+    color: #ffffff;
+}
+
+.donations-for-paynow__checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.donations-for-paynow__checkmark__check {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+}
+
+.donations-for-paynow__crossmark__circle {
+      stroke-dasharray: 157;
+      stroke-dashoffset: 157;
+      animation: draw-circle 0.6s ease-out forwards;
+    }
+
+.donations-for-paynow__crossmark__line {
+    stroke-dasharray: 28;
+    stroke-dashoffset: 28;
+    opacity: 0;
+}
+
+.donations-for-paynow__crossmark__line--1 {
+    animation: draw-line 0.4s 0.6s ease-out forwards;
+}
+
+.donations-for-paynow__crossmark__line--2 {
+    animation: draw-line 0.4s 0.9s ease-out forwards;
+}
+
+@keyframes stroke {
+    to {
+      stroke-dashoffset: 0;
+    }
+}
+
+@keyframes draw-circle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes draw-line {
+    0% {
+        stroke-dashoffset: 28;
+        opacity: 1;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .thankyou-wrapper h1 {
+      font-size: 1.4rem;
+    }
+    .thankyou-wrapper p {
+      font-size: 0.9rem;
+    }
+    .checkmark {
+      width: 70px;
+      height: 70px;
+    }
+  }

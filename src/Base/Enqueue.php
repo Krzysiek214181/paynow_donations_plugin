@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Base;
+namespace Kszkl\Donations\Base;
 
-use Src\Base\BaseController;
+use Kszkl\Donations\Base\BaseController;
 class Enqueue extends BaseController
 {
     public function register(){

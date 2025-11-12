@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Admin;
+namespace Kszkl\Donations\Admin;
 
 class AdminInit
 {
